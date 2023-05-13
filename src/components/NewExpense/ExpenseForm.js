@@ -6,6 +6,9 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
+  const [enteredDescription, setEnteredDescription] = useState('');
+  const [enteredStock, setEnteredStock] = useState('');
+  const [enteredImageURL, setEnteredImageURL] = useState('');
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: '',
   //   enteredAmount: '',
@@ -39,6 +42,30 @@ const ExpenseForm = (props) => {
     // });
   };
 
+  const descriptionChangeHandler = (event) => {
+    setEnteredDescription(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
+  };
+
+  const stockChangeHandler = (event) => {
+    setEnteredStock(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
+  };
+
+  const imageURLChangeHandler = (event) => {
+    setEnteredImageURL(event.target.value);
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // });
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -46,19 +73,26 @@ const ExpenseForm = (props) => {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
+      description : enteredDescription,
+      stock : enteredStock,
+      imageURL : enteredImageURL
     };
 
     props.onSaveExpenseData(expenseData);
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
+    setEnteredDescription('');
+    setEnteredStock('');
+    setEnteredImageURL('');
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
-          <label>Title</label>
+          {/* <h2>Add New Product</h2> */}
+          <label>Name Product</label>
           <input
             type='text'
             value={enteredTitle}
@@ -66,11 +100,11 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className='new-expense__control'>
-          <label>Amount</label>
+          <label>Price</label>
           <input
             type='number'
-            min='0.01'
-            step='0.01'
+            min='0.5'
+            step='0.5'
             value={enteredAmount}
             onChange={amountChangeHandler}
           />
@@ -85,10 +119,39 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler}
           />
         </div>
+        <div className='new-expense__control'>
+          {/* <h2>Add New Product</h2> */}
+          <label>Description</label>
+          <input
+            type='text'
+            value={enteredDescription}
+            onChange={descriptionChangeHandler}
+          />
+        </div>
+        <div className='new-expense__control'>
+          <label>Stock</label>
+          <input
+            type='number'
+            min='1'
+            step='1'
+            value={enteredStock}
+            onChange={stockChangeHandler}
+          />
+        </div>
+        <div className='new-expense__control'>
+          <label>Image</label>
+          <input
+            type='file'
+            accept='.jpg,.png,.jpeg'
+            value={enteredImageURL}
+            onChange={imageURLChangeHandler}
+         />
+        </div>
+
       </div>
       <div className='new-expense__actions'>
         <button type="button" onClick={props.onCancel}>Cancel</button>
-        <button type='submit'>Add Expense</button>
+        <button type='submit'>Add Product</button>
       </div>
     </form>
   );

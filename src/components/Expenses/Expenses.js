@@ -7,15 +7,21 @@ import ExpensesChart from './ExpensesChart';
 import './Expenses.css';
 
 const Expenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState('2020');
+  const [filteredYear, setFilteredYear] = useState('All');
 
+  
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
   const filteredExpenses = props.items.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
+    if (filteredYear === 'All') {
+      return true; // menampilkan semua data
+    } else {
+      return expense.date.getFullYear().toString() === filteredYear;
+    }
   });
+  
 
   return (
     <div>
