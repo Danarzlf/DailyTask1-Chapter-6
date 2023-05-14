@@ -7,3 +7,30 @@
   justify-content: space-around;
   height: 10rem;
 }
+
+.chart:hover {
+  animation: rainbow 2s linear infinite;
+  cursor: pointer;
+}
+
+@keyframes rainbow {
+  0% {
+    background-color: #ff6f91;
+  }
+
+  25% {
+    background-color: #ffb347;
+  }
+
+  50% {
+    background-color: #f9dc5c;
+  }
+
+  75% {
+    background-color: #b0e0e6;
+  }
+
+  100% {
+    background-color: #c7ecee;
+  }
+}
