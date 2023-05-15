@@ -7,29 +7,30 @@ const DUMMY_EXPENSES = [
   {
     id: 'e1',
     title: 'Book',
-    description : "buku tulis", 
-    amount: 94.12,
+    description : "book for important notes", 
+    amount: 5.5,
     stock : 100,
     date: new Date(2020, 7, 14),
   },
   { id: 'e2', 
-    title: 'New TV', 
-    description : "buku tulis",  
-    amount: 799.49, stock : 100 ,  
+    title: 'Televition', 
+    description : "television for daily entertainment",  
+    amount: 199.49, 
+    stock : 100 ,  
     date: new Date(2021, 2, 12) },
   {
     id: 'e3',
-    title: 'Car Insurance',
-    description : "buku tulis", 
-    amount: 294.67,
+    title: 'Pen',
+    description : "pen to write important notes", 
+    amount: 9.67,
     stock : 100,
     date: new Date(2021, 2, 28),
   },
   {
-    id: 'e4',
+    id: 'Sofa',
     title: 'New Desk (Wooden)',
-    description : "buku tulis", 
-    amount: 450,
+    description : "Sofa to sit relaxed", 
+    amount: 40,
     stock : 100,
     date: new Date(2021, 5, 12),
   },
@@ -43,6 +44,10 @@ const App = () => {
       return [expense, ...prevExpenses];
     });
   };
+
+  //prevExpenses = data dummy
+  // return [expense, ...prevExpenses];
+  //jadi menampilkan data baru expenses dulu baru data awal/dummy
 
   // return React.createElement(
   //   'div',

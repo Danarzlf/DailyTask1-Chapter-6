@@ -9,61 +9,34 @@ const ExpenseForm = (props) => {
   const [enteredDescription, setEnteredDescription] = useState("");
   const [enteredStock, setEnteredStock] = useState("");
   const [enteredImageURL, setEnteredImageURL] = useState("");
-  // const [userInput, setUserInput] = useState({
-  //   enteredTitle: '',
-  //   enteredAmount: '',
-  //   enteredDate: '',
-  // });
+  const [isAvailable, setIsAvailable] = useState(false); // state untuk toggle
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
-    // setUserInput((prevState) => {
-    //   return { ...prevState, enteredTitle: event.target.value };
-    // });
   };
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredAmount: event.target.value,
-    // });
   };
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
   };
 
   const descriptionChangeHandler = (event) => {
     setEnteredDescription(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
   };
 
   const stockChangeHandler = (event) => {
     setEnteredStock(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
   };
 
   const imageURLChangeHandler = (event) => {
     setEnteredImageURL(event.target.value);
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
+  };
+
+  const toggleAvailabilityHandler = () => {
+    setIsAvailable((prevState) => !prevState);
   };
 
   const submitHandler = (event) => {
@@ -76,6 +49,7 @@ const ExpenseForm = (props) => {
       description: enteredDescription,
       stock: enteredStock,
       imageURL: enteredImageURL,
+      isAvailable: isAvailable, // menambahkan status toggle ke expenseData
     };
 
     props.onSaveExpenseData(expenseData);
@@ -85,8 +59,8 @@ const ExpenseForm = (props) => {
     setEnteredDescription("");
     setEnteredStock("");
     setEnteredImageURL("");
+    setIsAvailable(false); // mereset status toggle ke false setelah data tersimpan
   };
-
   return (
     <form onSubmit={submitHandler}>
       <h1>ADD PRODUCT</h1>
@@ -133,6 +107,15 @@ const ExpenseForm = (props) => {
             <input type="file" accept=".jpg,.png,.jpeg" value={enteredImageURL} onChange={imageURLChangeHandler} />
           </div>
         </div>
+        <div>
+      <h1>Product Availability</h1>
+      <label className="switch">
+        <input type="checkbox" checked={isAvailable} onChange={toggleAvailabilityHandler} />
+        <span className="slider"></span>
+      </label>
+      <p>{isAvailable ? "Available" : "Not Available"}</p>
+    </div>
+        
       </div>
       <div className="new-expense__actions">
         <button type="button" onClick={props.onCancel}>
